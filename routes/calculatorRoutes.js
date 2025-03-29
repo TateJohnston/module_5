@@ -1,5 +1,5 @@
 const express = require("express");
-const calculatorController = "../controllers/calculatorController.js";
+const calculatorController = require("../controllers/calculatorController.js");
 const router = express.Router();
 
 router.get("/add", (req, res) => {

@@ -1,9 +1,14 @@
-// index.js - updated version
-// import the app
-const app = require("./app");
+const express = require("express");
+const cors = require("cors"); // Import cors
+const calculatorRoutes = require("./routes/calculatorRoutes");
+const app = express();
 const port = 3000;
-// start the app to listen on the right port
+
+app.use(cors()); // Enable CORS for all routes
+
+app.use("/calculator", calculatorRoutes);
+
 app.listen(port, () => {
-  console.log(`Example app listening at
-http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
+app.use(express.static("public"));
