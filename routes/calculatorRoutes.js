@@ -1,5 +1,5 @@
 const express = require("express");
-const calculatorController = "../controllers/calculatorController.js";
+const calculatorController = require("../controllers/calculatorController.js");
 const router = express.Router();
 
 router.get("/add", (req, res) => {
@@ -8,5 +8,10 @@ router.get("/add", (req, res) => {
 router.get("/multiply", (req, res) => {
   calculatorController.multiplyNumbers(req, res);
 });
-
+router.get("/subtract", (req, res) => {
+  calculatorController.subtractNumbers(req, res);
+});
+router.get("/divide", (req, res) => {
+  calculatorController.divideNumbers(req, res);
+});
 module.exports = router;

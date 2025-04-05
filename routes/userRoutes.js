@@ -6,6 +6,10 @@ const users = [
   { id: 3, name: "Chris Hipkins", country: "NZ" },
   { id: 4, name: "Lee Hsien Loong", country: "SG" },
 ];
+
+router.get("/", (req, res) => {
+  res.json(users);
+});
 // Dynamic request param endpoint - get the user matching
 // the specific ID ie. /users/3
 router.get("/:id", (req, res) => {
@@ -14,7 +18,7 @@ router.get("/:id", (req, res) => {
   // matching anything after the / in the request path
   let user = users.find((user) => user.id == userId);
   user
-    ? res.status(200).json({ result: user })
+    ? res.status(200).json(user)
     : res.status(404).json({ result: `User ${userId} not found` });
 });
 router.post("/", (req, res) => {

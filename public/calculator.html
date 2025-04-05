@@ -3,20 +3,75 @@
     <title>Calculator Example</title>
   </head>
   <body>
+    <input type="number" id="num1" />
+    <label for="num1">Number 1</label>
+    <input type="number" id="num2" />
+    <label for="num2">Number 2</label>
+    <button onclick="multiply()">multiply</button>
+    <button onclick="add()">add</button>
+    <button onclick="subtract()">subtract</button>
+    <button onclick="divide()">divide</button>
+
     <div>
-      Result
+      Result:
       <span id="result"></span>
     </div>
   </body>
   <script>
-    let num1 = 2;
-    let num2 = 4;
-    fetch(`/calculator/add?num1=${num1}&num2=${num2}`)
-      .then((response) => response.json())
-      .then((data) => {
-        document.getElementById("result").innerHTML = data.result;
-      });
+    let number1Input = document.getElementById("num1");
+    let number2Input = document.getElementById("num2");
+    const add = () => {
+      let num1 = number1Input.value;
+      let num2 = number2Input.value;
+      fetch(`http://localhost:3000/calculator/add?num1=${num1}&num2=${num2}`)
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("result").innerHTML =
+            num1 + " + " + num2 + " = " + data.result;
+          number1Input.value = "";
+          number2Input.value = "";
+        });
+    };
+    const multiply = () => {
+      let num1 = number1Input.value;
+      let num2 = number2Input.value;
+      fetch(
+        `http://localhost:3000/calculator/multiply?num1=${num1}&num2=${num2}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("result").innerHTML =
+            num1 + " x " + num2 + " = " + data.result;
+          number1Input.value = "";
+          number2Input.value = "";
+        });
+    };
 
-    let id = 3;
+    const subtract = () => {
+      let num1 = number1Input.value;
+      let num2 = number2Input.value;
+      fetch(
+        `http://localhost:3000/calculator/subtract?num1=${num1}&num2=${num2}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("result").innerHTML =
+            num1 + " - " + num2 + " = " + data.result;
+          number1Input.value = "";
+          number2Input.value = "";
+        });
+    };
+    const divide = () => {
+      let num1 = number1Input.value;
+      let num2 = number2Input.value;
+      fetch(`http://localhost:3000/calculator/divide?num1=${num1}&num2=${num2}`)
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("result").innerHTML =
+            num1 + " &divide; " + num2 + " = " + data.result;
+          number1Input.value = "";
+          number2Input.value = "";
+        });
+    };
   </script>
 </html>
